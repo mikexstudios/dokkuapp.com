@@ -58,3 +58,5 @@ gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'font-awesome-sass-rails', '~> 3.0.2.2' #for better glyphs
 
 gem 'high_voltage', '~> 2.0.0' #for static pages
+
+gem 'route53', '~> 0.2.1' #for Amazon Route53 DNS
