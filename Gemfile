@@ -53,7 +53,7 @@ gem 'devise', '~> 3.1.1'
 gem 'rails_admin', '~> 0.5.0'
 
 gem 'haml', '~> 4.0.3'
-gem 'compass-rails', '~> 1.0.3'
+#gem 'compass-rails', '~> 2.0.alpha.0'
 gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'font-awesome-sass-rails', '~> 3.0.2.2' #for better glyphs
 
