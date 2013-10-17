@@ -33,7 +33,6 @@ GEM
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     builder (3.1.4)
-    chunky_png (1.2.8)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -41,12 +40,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    compass (0.12.2)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
-    compass-rails (1.0.3)
-      compass (>= 0.12.2, < 0.14)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -61,7 +54,6 @@ GEM
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
-    fssm (0.2.10)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -187,7 +179,6 @@ DEPENDENCIES
   annotate (~> 2.5.0)
   bootstrap-sass (~> 2.3.2.2)
   coffee-rails (~> 4.0.0)
-  compass-rails (~> 1.0.3)
   devise (~> 3.1.1)
   font-awesome-sass-rails (~> 3.0.2.2)
   haml (~> 4.0.3)
