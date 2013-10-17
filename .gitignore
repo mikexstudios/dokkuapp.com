@@ -1,3 +1,8 @@
+#Local environment file for heroku/foreman
+#See: https://devcenter.heroku.com/articles/config-vars#local-setup
+.env
+
+#For rails
 *.rbc
 *.sassc
 .sass-cache
@@ -17,3 +22,42 @@ rerun.txt
 pickle-email-*.html
 .project
 config/initializers/secret_token.rb
+
+#Ruby.gitignore
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+
+
+#vim.gitignore
+.*.sw[a-z]
+*.un~
+Session.vim
+
+
+#OSX.gitignore
+.DS_Store
+Icon?
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
