@@ -61,4 +61,7 @@ gem 'high_voltage', '~> 2.0.0' #for static pages
 
 gem 'route53', '~> 0.2.1' #for Amazon Route53 DNS
 
-gem 'grape', '~> 0.6.0' #for API
+#Need to use git version of grape since 0.6.0 has a serious bug in requires 
+#type checking: https://github.com/intridea/grape/issues/490
+#gem 'grape', '~> 0.6.0' #for API
+gem 'grape', :git => 'git://github.com/intridea/grape.git'
