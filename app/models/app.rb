@@ -17,7 +17,9 @@ class App < ActiveRecord::Base
   before_destroy :remove_dns
 
   validates :name, :presence => true, :uniqueness => true,
-                   :length => { :maximum => 255 }
+                   :length => { :maximum => 255 },
+                   :exclusion => { :in => %w(www admin api) }
+
   #http://stackoverflow.com/questions/3756184/rails-3-validate-ip-string
   validates :address, :presence => true, 
                       :format => { :with => Resolv::IPv4::Regex }

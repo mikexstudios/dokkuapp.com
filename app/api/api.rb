@@ -39,7 +39,7 @@ class API < Grape::API
       #request.remote_ip does not exist here so need to grab it from env.
       params[:address] = request.env['action_dispatch.remote_ip'].to_s if params[:address].nil?
       a.address = params[:address]
-      a.save
+      a.save!
       return {name: a.name,
               address: a.address}
     end
