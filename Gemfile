@@ -55,6 +55,7 @@ gem 'turbolinks'
 
 gem 'devise', '~> 3.1.1'
 gem 'rails_admin', '~> 0.5.0'
+gem 'cancan', '~> 1.6.10'
 
 gem 'haml', '~> 4.0.3'
 #gem 'compass-rails', '~> 2.0.alpha.0'
