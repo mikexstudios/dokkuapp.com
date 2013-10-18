@@ -44,14 +44,17 @@ class API < Grape::API
               address: a.address}
     end
 
-
-    #desc "Delete an app."
-    #params do
-    #  requires :id, type: String, desc: "Status ID."
-    #end
-    #delete ':id' do
-    #  authenticate!
-    #  current_user.statuses.find(params[:id]).destroy
-    #end
+    desc "Delete an app association."
+    params do
+      requires :name, type: String, desc: "Name of app."
+    end
+    route_param :name do
+      delete do
+        a = App.find_by! name: params[:name]
+        a.destroy
+        return {status: 'success',
+                message: "App association has been deleted!"}
+      end
+    end
   end
 end
