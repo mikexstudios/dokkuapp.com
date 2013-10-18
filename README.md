@@ -38,14 +38,19 @@ Deploying on Heroku
    `https://myapp.herokuapp.com/api/v1/apps/[randomstring]`). Make an entry for `[randomstring]`
    by curling your app: `curl -X POST -d'name=[randomstring]' https://myapp.herokuapp.com/api/v1/apps/`.
    Now New Relic will send you an alert if your app goes down!
+6. *(Optional)* Set up a custom domain that points to the heroku app. First, make sure that
+   the domain is registered and that the nameservers are pointed at Amazon's Route 53 DNS 
+   servers. Then, follow [Heroku's guide on configuring Route 53][3].
+
 
 [1]: https://devcenter.heroku.com/articles/config-vars
 [2]: https://newrelic.com/
+[3]: https://devcenter.heroku.com/articles/route-53#naked-root-domain
 
 Using the admin interface
 -------------------------
 
-The admin interface is based off of [rails_admin][3] and uses [cancan][4] to restrict access 
+The admin interface is based off of [rails_admin][4] and uses [cancan][5] to restrict access 
 to users with the `.admin` flag set to `true`. To use:
 
 1. Visit `https://yourapp.herokuapp.com/admin/` and sign up.
@@ -61,5 +66,5 @@ to users with the `.admin` flag set to `true`. To use:
 
 4. Now you should be able to log into the admin section.
 
-[3]: https://github.com/sferik/rails_admin
-[4]: https://github.com/ryanb/cancan
+[4]: https://github.com/sferik/rails_admin
+[5]: https://github.com/ryanb/cancan
