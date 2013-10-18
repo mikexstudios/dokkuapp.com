@@ -7,7 +7,8 @@ DokkuappCom::Application.routes.draw do
   mount API => '/'
 
   # You can have the root of your site routed with "root"
-  root :to => 'high_voltage/pages#show', id: 'home'
+  #root :to => 'high_voltage/pages#show', id: 'home'
+  root :to => redirect('https://github.com/mikexstudios/dokkuapp.com#readme')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

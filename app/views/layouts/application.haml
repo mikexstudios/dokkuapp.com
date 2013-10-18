@@ -1,0 +1,38 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title= yield :title
+    -#Turning off responsive for now.
+    -#%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %meta{:name => "description", :content => ""}
+    %meta{:name => "author", :content => ""}
+    -# TODO: Add IE7 support to font-awesome, see 
+    -# https://github.com/bokmann/font-awesome-rails
+    :plain
+      <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+
+    = stylesheet_link_tag 'application', :media => 'screen, projection'
+    = javascript_include_tag 'application'
+    = favicon_link_tag
+    = csrf_meta_tag
+
+  %body{ :id => "#{location_name}", :class => "bp #{controller.controller_name}" }
+    -# Had to add a root container to use the sticky footer mixin from compass.
+    #root
+      -# removed the fixed attribute
+      #header.navbar.navbar-static-top
+        .navbar-inner
+          %a.brand{:href => '#'} Dokkuapp
+
+      = yield(:after_navbar) if content_for?(:after_navbar)
+
+      .container-fluid
+        = content_for?(:content) ? yield(:content) : yield
+
+      -# For sticky footer mixin.
+      #root-footer
+    #footer
