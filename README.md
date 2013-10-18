@@ -29,6 +29,37 @@ Deploying on Heroku
    ```
    
 3. Migrate the database: `heroku run rake db:migrate`.
-4. That's it!
+4. *(Optional)* Sign up for a [New Relic][2] account, create a new application to monitor, and
+   then note your license key. Then set the license key as a environment variable in Heroku: 
+   `heroku config:set NEW_RELIC_LICENSE_KEY=[license key here]`. Restart your dyno to see your
+   app appear in New Relic.
+5. *(Optional)* Set up availability monitoring in New Relic under Settings -> Availability 
+   Monitoring for your app. Set a url to ping every 5 minutes (e.g. 
+   `https://myapp.herokuapp.com/api/v1/apps/[randomstring]`). Make an entry for `[randomstring]`
+   by curling your app: `curl -X POST -d'name=[randomstring]' https://myapp.herokuapp.com/api/v1/apps/`.
+   Now New Relic will send you an alert if your app goes down!
 
 [1]: https://devcenter.heroku.com/articles/config-vars
+[2]: https://newrelic.com/
+
+Using the admin interface
+-------------------------
+
+The admin interface is based off of [rails_admin][3] and uses [cancan][4] to restrict access 
+to users with the `.admin` flag set to `true`. To use:
+
+1. Visit `https://yourapp.herokuapp.com/admin/` and sign up.
+2. Open a Heroku console: `heroku run rails console`.
+3. Select your user and set the `.admin` flag to `true`:
+
+   ```ruby
+   irb(main):001:0> u = User.find(1)
+   irb(main):002:0> u.admin = true
+   irb(main):003:0> u.save
+   irb(main):004:0> exit
+   ```
+
+4. Now you should be able to log into the admin section.
+
+[3]: https://github.com/sferik/rails_admin
+[4]: https://github.com/ryanb/cancan
