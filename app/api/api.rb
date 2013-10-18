@@ -3,19 +3,25 @@ class API < Grape::API
   version 'v1', using: :path
   format :json
 
+  get do
+    { message: "You've reached the API root page!" }
+  end
+
   resource :apps do
-    
+
     get do
-      { 'hello' => 'world' }
+      { message: "You must specify an app name!" }
     end
 
-    desc "Return a app's address."
+    desc "Return a app's address given the app's name."
     params do
-      requires :id, type: Integer, desc: "App id."
+      requires :id, type: String, desc: "App name."
     end
     route_param :id do
       get do
-        App.find(params[:id])
+        a = App.find_by name: params[:id]
+        return {name: a.name,
+                address: a.address}
       end
     end
 
