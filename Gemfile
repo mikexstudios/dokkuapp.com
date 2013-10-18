@@ -13,6 +13,9 @@ group :production do
   
   # Scaling workers automatically on Heroku
   #gem 'workless', '~> 1.1.2'
+  
+  #For static asset serving and logging on heroku
+  gem 'rails_12factor', '~> 0.0.2'
 end
 
 group :development do
