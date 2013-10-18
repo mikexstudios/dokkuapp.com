@@ -1,6 +1,7 @@
 #Local environment file for heroku/foreman
 #See: https://devcenter.heroku.com/articles/config-vars#local-setup
 .env
+config/newrelic.yml
 
 #For rails
 *.rbc

@@ -10,7 +10,7 @@ gem 'puma', '~> 2.0.1'
 
 group :production do
   gem 'pg', '~> 0.15.1' #for heroku, PostgreSQL
-  #gem 'newrelic_rpm', '~> 3.6.2.96'
+  gem 'newrelic_rpm', '~> 3.6.8.164'
   
   # Scaling workers automatically on Heroku
   #gem 'workless', '~> 1.1.2'
