@@ -13,6 +13,7 @@ require 'resolv' #for validating IP address
 require 'route53'
 
 class App < ActiveRecord::Base
+  before_validation :generate_name_if_empty
   before_save :update_dns #must be before_save since we need to check if record exists
   before_destroy :remove_dns
 
@@ -28,7 +29,28 @@ class App < ActiveRecord::Base
     return '%s.%s' % [name, Rails.application.config.route53_zone]
   end
 
+  def self.random_name
+    rand_id = Setting.last_random_subdomain_id
+    rand_id = 100 if rand_id.nil?
+    rand_id += Random.rand(ENV.fetch('SUBDOMAIN_RAND_SKIP', 50).to_i)
+    Setting.last_random_subdomain_id = rand_id
+    return Rufus::Mnemo.from_integer(rand_id)
+  end
+
   private
+
+  #If name is empty, we generate a random name
+  def generate_name_if_empty
+    if name.nil?
+      #Check to make sure that the "random name" has not already been 
+      #taken.
+      while true
+        rname = App.random_name
+        break unless App.exists? name: rname
+      end
+      self.name = rname
+    end
+  end
 
   def update_dns
     r = get_route53_record
