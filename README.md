@@ -13,10 +13,21 @@ To use in your dokku installation, install the [dokku-dokkuapp][1] plugin.
 
 #### Here's how to use the API:
 
-* To **request a subdomain** (i.e., `http://myapp.dokkuapp.com`), send a `POST` request to
-  `http://www.dokkuapp.com/api/v1/apps` with parameter `name` set to the subdomain that
-  you are requesting. The expected JSON response confirms the name to IP address
-  mapping:
+* To **request a random subdomain** (i.e., `http://[randomword].dokkuapp.com`), send a 
+  `POST` request to `http://www.dokkuapp.com/api/v1/apps`. The expected JSON response 
+  confirms the name to IP address mapping:
+    ```sh
+    $ curl -X POST http://www.dokkuapp.com/api/v1/apps
+    {"name":"[randomword]","address":"[your ip address]"}
+    ```
+  
+  **NOTE**: The generated subdomain is based off of an integer incremented by a small
+  random value. Therefore, these subdomains are **not** unguessable.
+
+* To **request a specific subdomain** (i.e., `http://myapp.dokkuapp.com`), send a `POST` 
+  request to `http://www.dokkuapp.com/api/v1/apps` with parameter `name` set to the 
+  subdomain that you are requesting. The expected JSON response confirms the name to IP 
+  address mapping:
     ```sh
     $ curl -X POST -d'name=myapp' http://www.dokkuapp.com/api/v1/apps
     {"name":"myapp","address":"[your ip address]"}
