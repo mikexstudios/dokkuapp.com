@@ -11,5 +11,5 @@
 #  updated_at :datetime
 #
 
-class Setting < RailsSettings::CachedSettings
+class Setting < RailsSettings::Settings
 end
