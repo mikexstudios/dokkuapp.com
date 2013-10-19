@@ -29,12 +29,12 @@ class API < Grape::API
 
     desc "Create an association between an app name and server address."
     params do
-      requires :name, type: String, desc: "Name of app."
+      optional :name, type: String, desc: "Name of app."
       optional :address, type: String, regexp: Resolv::IPv4::Regex, 
                          desc: "Address of app server."
     end
     post do
-      a = App.find_or_initialize_by name: params[:name]
+      a = App.find_or_initialize_by name: params[:name] #ok if name is nil
       #If no address is specified, use the address of the client.
       #request.remote_ip does not exist here so need to grab it from env.
       params[:address] = request.env['action_dispatch.remote_ip'].to_s if params[:address].nil?
