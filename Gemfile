@@ -72,3 +72,7 @@ gem 'route53', '~> 0.2.1' #for Amazon Route53 DNS
 gem 'grape', :git => 'git://github.com/intridea/grape.git'
 
 gem 'rufus-mnemo', '~> 1.2.3' #For generating japanese-like words
+
+#For storing certain settings in database - mainly for keeping track of 
+#a randomly incremented integer for generating subdomains.
+gem 'rails-settings-cached', '~> 0.3.1'
