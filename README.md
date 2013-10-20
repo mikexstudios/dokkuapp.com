@@ -119,3 +119,32 @@ to users with the `.admin` flag set to `true`. To use:
 
 [7]: https://github.com/sferik/rails_admin
 [8]: https://github.com/ryanb/cancan
+
+How random are the generated subdomains?
+----------------------------------------
+
+In short: **not very random**. It is only random enough to prevent obvious guessing of subdomains.
+
+There are two random components:
+
+1. [Rufus' Mnemo syllable array][mnemo-array] is randomized by a seed set by 
+   `ENV['SUBDOMAIN_RAND_SEED'`. This makes the subdomains less obvious that they're incrementing
+   in alphabetical order.
+2. The subdomain is generated from an incremented integer that is tracked in the `Setting` model.
+   Instead of incremented by a fixed value, the integer is incremented by `Random.rand(50)`, or
+   by another range that can be specified through `ENV`.
+
+The reason why a random number isn't being generated and converted to a word using mnemo is 
+that the probability of collisions is high for short words (i.e., small random numbers).
+According to the [birthday problem][9], if a random number is generated between 1 and 100000,
+a 50% collison rate occurs after 373 generated numbers! Of course, one may check the database
+for subdomain collisions and regenerate a new name if that occurs. However, the probability
+of collisions will only increase over time. 
+
+Therefore, the design decision was made to use a slightly random sequential number to create the
+subdomains instead.
+
+[mnemo-array]: https://github.com/jmettraux/rufus-mnemo/blob/master/lib/rufus/mnemo.rb#L73
+[9]: https://en.wikipedia.org/wiki/Birthday_problem
+
+
