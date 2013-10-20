@@ -9,7 +9,7 @@ installation, install the [dokku-dokkuapp][1] plugin.
 How do I use this?
 ------------------
 
-To use in your dokku installation, install the [dokku-dokkuapp][1] plugin.
+To use in your dokku installation, install the [dokku-dokkuapp][dokkuapp-plugin] plugin.
 
 #### Here's how to use the API:
 
@@ -54,7 +54,7 @@ To use in your dokku installation, install the [dokku-dokkuapp][1] plugin.
     {"status":"success","message":"App association has been deleted!"}
     ```
 
-[1]: https://github.com/mikexstudios/dokku-dokkuapp
+[dokkuapp-plugin]: https://github.com/mikexstudios/dokku-dokkuapp
 
 How does it work?
 -----------------
@@ -69,7 +69,7 @@ Deploying on Heroku
 -------------------
 
 1. Create your heroku app and push to it: `git push heroku master`.
-2. Set configuration variables for dokkuapp.com as [environment variables on heroku][2]. 
+2. Set configuration variables for dokkuapp.com as [environment variables on heroku][heroku-env]. 
    See `.env.sample` file for what variables need to be set. Ignore the `PORT` and `RACK_ENV` 
    variables since they are for local use).
 
@@ -80,7 +80,7 @@ Deploying on Heroku
    ```
    
 3. Migrate the database: `heroku run rake db:migrate`.
-4. *(Optional)* Sign up for a [New Relic][3] account, create a new application to monitor, and
+4. *(Optional)* Sign up for a [New Relic][nr] account, create a new application to monitor, and
    then note your license key. Then set the license key as a environment variable in Heroku: 
    `heroku config:set NEW_RELIC_LICENSE_KEY=[license key here]`. Restart your dyno to see your
    app appear in New Relic.
@@ -91,17 +91,17 @@ Deploying on Heroku
    Now New Relic will send you an alert if your app goes down!
 6. *(Optional)* Set up a custom domain that points to the heroku app. First, make sure that
    the domain is registered and that the nameservers are pointed at Amazon's Route 53 DNS 
-   servers. Then, follow [Heroku's guide on configuring Route 53][4].
+   servers. Then, follow [Heroku's guide on configuring Route 53][heroku-route53].
 
 
-[2]: https://devcenter.heroku.com/articles/config-vars
-[3]: https://newrelic.com/
-[4]: https://devcenter.heroku.com/articles/route-53#naked-root-domain
+[heroku-env]: https://devcenter.heroku.com/articles/config-vars
+[nr]: https://newrelic.com/
+[heroku-route53]: https://devcenter.heroku.com/articles/route-53#naked-root-domain
 
 Using the admin interface
 -------------------------
 
-The admin interface is based off of [rails_admin][5] and uses [cancan][6] to restrict access 
+The admin interface is based off of [rails_admin][ra] and uses [cancan][cc] to restrict access 
 to users with the `.admin` flag set to `true`. To use:
 
 1. Visit `https://yourapp.herokuapp.com/admin/` and sign up.
@@ -117,8 +117,8 @@ to users with the `.admin` flag set to `true`. To use:
 
 4. Now you should be able to log into the admin section.
 
-[7]: https://github.com/sferik/rails_admin
-[8]: https://github.com/ryanb/cancan
+[ra]: https://github.com/sferik/rails_admin
+[cc]: https://github.com/ryanb/cancan
 
 How random are the generated subdomains?
 ----------------------------------------
@@ -136,7 +136,7 @@ There are two random components:
 
 The reason why a random number isn't being generated and converted to a word using mnemo is 
 that the probability of collisions is high for short words (i.e., small random numbers).
-According to the [birthday problem][9], if a random number is generated between 1 and 100000,
+According to the [birthday problem][bp], if a random number is generated between 1 and 100000,
 a 50% collison rate occurs after 373 generated numbers! Of course, one may check the database
 for subdomain collisions and regenerate a new name if that occurs. However, the probability
 of collisions will only increase over time. 
@@ -145,6 +145,6 @@ Therefore, the design decision was made to use a slightly random sequential numb
 subdomains instead.
 
 [mnemo-array]: https://github.com/jmettraux/rufus-mnemo/blob/master/lib/rufus/mnemo.rb#L73
-[9]: https://en.wikipedia.org/wiki/Birthday_problem
+[bp]: https://en.wikipedia.org/wiki/Birthday_problem
 
 
